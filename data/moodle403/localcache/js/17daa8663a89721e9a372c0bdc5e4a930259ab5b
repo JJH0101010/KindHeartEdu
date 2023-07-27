@@ -1,0 +1,23 @@
+/**
+ * When embedded the communicator helps talk to the parent page.
+ * This is a copy of the H5P.communicator, which we need to communicate in this context
+ *
+ * @type {H5PEmbedCommunicator}
+ * @module     core_h5p
+ * @copyright  2019 Joubel AS <contact@joubel.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+H5PEmbedCommunicator=(function(){function Communicator(){var self=this;var actionHandlers={};window.addEventListener('message',function receiveMessage(event){if(window.parent!==event.source||event.data.context!=='h5p'){return}
+if(actionHandlers[event.data.action]!==undefined){actionHandlers[event.data.action](event.data)}},!1);self.on=function(action,handler){actionHandlers[action]=handler};self.send=function(action,data){if(data===undefined){data={}}
+data.context='h5p';data.action=action;window.parent.postMessage(data,'*')};const repositoryPromise=new Promise((resolve)=>{require(['core_h5p/repository'],(Repository)=>{self.post=Repository.postStatement;self.postState=Repository.postState;self.deleteState=Repository.deleteState;resolve(Repository)})});self.post=(component,statements)=>repositoryPromise.then((Repository)=>Repository.postStatement(component,statements,));self.postState=(component,activityId,agent,stateId,stateData,)=>repositoryPromise.then((Repository)=>Repository.postState(component,activityId,agent,stateId,stateData,));self.deleteState=(component,activityId,agent,stateId)=>repositoryPromise.then((Repository)=>Repository.deleteState(component,activityId,agent,stateId,))}
+return(window.postMessage&&window.addEventListener?new Communicator():undefined)})();var getH5PObject=async(iFrame)=>{var H5P=iFrame.contentWindow.H5P;if(H5P?.instances?.[0]){return H5P}
+const sleep=(delay)=>new Promise((resolve)=>setTimeout(resolve,delay));let remainingAttemps=10;while(!H5P?.instances?.[0]&&remainingAttemps>0){await sleep(100);H5P=iFrame.contentWindow.H5P;remainingAttemps--}
+return H5P};document.onreadystatechange=async()=>{if(document.readyState!=='complete'){return}
+var statementPosted=!1;var iFrame=document.querySelector('.h5p-iframe');if(!iFrame||!iFrame.contentWindow){return}
+var H5P=await getH5PObject(iFrame);if(!H5P?.instances?.[0]){return}
+var resizeDelay;var instance=H5P.instances[0];var parentIsFriendly=!1;H5PEmbedCommunicator.on('ready',function(){H5PEmbedCommunicator.send('hello')});H5PEmbedCommunicator.on('hello',function(){parentIsFriendly=!0;iFrame.contentDocument.body.style.overflow='hidden';document.body.classList.add('h5p-resizing');H5P.trigger(instance,'resize')});H5PEmbedCommunicator.on('resizePrepared',function(){H5PEmbedCommunicator.send('resize',{scrollHeight:iFrame.contentDocument.body.scrollHeight})});H5PEmbedCommunicator.on('resize',function(){H5P.trigger(instance,'resize')});H5P.on(instance,'resize',function(){if(H5P.isFullscreen){return}
+clearTimeout(resizeDelay);resizeDelay=setTimeout(function(){if(parentIsFriendly){H5PEmbedCommunicator.send('prepareResize',{scrollHeight:iFrame.contentDocument.body.scrollHeight,clientHeight:iFrame.contentDocument.body.clientHeight})}else{H5PEmbedCommunicator.send('hello')}},0)});H5P.externalDispatcher.on('xAPI',function(event){statementPosted=!1;var moodlecomponent=H5P.getMoodleComponent();if(moodlecomponent==undefined){return}
+var hasStatement=event&&event.data&&event.data.statement;if(!hasStatement){return}
+var statement=event.data.statement;var validVerb=statement.verb&&statement.verb.id;if(!validVerb){return}
+var isCompleted=statement.verb.id==='http://adlnet.gov/expapi/verbs/answered'||statement.verb.id==='http://adlnet.gov/expapi/verbs/completed';var isChild=statement.context&&statement.context.contextActivities&&statement.context.contextActivities.parent&&statement.context.contextActivities.parent[0]&&statement.context.contextActivities.parent[0].id;if(isCompleted&&!isChild){var statements=H5P.getXAPIStatements(this.contentId,statement);H5PEmbedCommunicator.post(moodlecomponent,statements);statementPosted=!0}});H5P.externalDispatcher.on('xAPIState',function(event){var moodlecomponent=H5P.getMoodleComponent();var contentId=event.data.activityId;var stateId=event.data.stateId;var state=event.data.state;if(state===undefined){return}
+if(state===null){H5PEmbedCommunicator.deleteState(moodlecomponent,contentId,H5P.getxAPIActor(),stateId)}else if(!statementPosted){var statedata={h5p:state};H5PEmbedCommunicator.postState(moodlecomponent,contentId,H5P.getxAPIActor(),stateId,JSON.stringify(statedata))}});H5P.trigger(instance,'resize')}

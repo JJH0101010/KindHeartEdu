@@ -1,0 +1,3 @@
+127.0.0.1 - - [24/Jul/2023:15:47:24 +1200] "GET /moodle403/ HTTP/1.1" 502 157 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.2 Safari/605.1.15"
+127.0.0.1 - - [24/Jul/2023:15:47:26 +1200] "GET /moodle403/ HTTP/1.1" 502 157 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.2 Safari/605.1.15"
+127.0.0.1 - - [24/Jul/2023:15:47:45 +1200] "GET /moodle403/ HTTP/1.1" 500 1528 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.2 Safari/605.1.15"
