@@ -1,6 +1,0 @@
-s:418:"<p>Max marks determines whether the grade information are hidden or how it is displayed:</p>
-
-<ul><li><p>To hide the grade information completely, do not tick this checkbox (Marks checkbox is disabled automatically).</p></li>
-<li><p>To show Max marks only: tick this checkbox and not the Marks checkbox.</p></li>
-<li><p>To show both Max marks and Marks, tick this checkbox as well as the Marks checkbox.</p></li>
-</ul>";

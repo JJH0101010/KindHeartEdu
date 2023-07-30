@@ -237,6 +237,7 @@ $cache = array (
     ),
     'enrol' => 
     array (
+      'autoenrol' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol',
       'category' => '/Applications/MAMP/htdocs/moodle403/enrol/category',
       'cohort' => '/Applications/MAMP/htdocs/moodle403/enrol/cohort',
       'database' => '/Applications/MAMP/htdocs/moodle403/enrol/database',
@@ -3547,6 +3548,24 @@ $cache = array (
     'editor_tiny_plugin_with_buttons' => '/Applications/MAMP/htdocs/moodle403/lib/editor/tiny/classes/plugin_with_buttons.php',
     'editor_tiny_plugin_with_configuration' => '/Applications/MAMP/htdocs/moodle403/lib/editor/tiny/classes/plugin_with_configuration.php',
     'editor_tiny_plugin_with_menuitems' => '/Applications/MAMP/htdocs/moodle403/lib/editor/tiny/classes/plugin_with_menuitems.php',
+    'enrol_autoenrol\\deleteselectedusers_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/deleteselectedusers_form.php',
+    'enrol_autoenrol\\deleteselectedusers_operation' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/deleteselectedusers_operation.php',
+    'enrol_autoenrol\\editselectedusers_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/editselectedusers_form.php',
+    'enrol_autoenrol\\editselectedusers_operation' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/editselectedusers_operation.php',
+    'enrol_autoenrol\\enrol_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/enrol_form.php',
+    'enrol_autoenrol\\filter_frontend' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/filter_frontend.php',
+    'enrol_autoenrol\\filter_info' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/filter_info.php',
+    'enrol_autoenrol\\privacy\\provider' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/privacy/provider.php',
+    'enrol_autoenrol\\task\\send_expiry_notifications' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/task/send_expiry_notifications.php',
+    'enrol_autoenrol\\task\\sync_enrolments' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/task/sync_enrolments.php',
+    'enrol_autoenrol\\task\\sync_expirations' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/task/sync_expirations.php',
+    'enrol_autoenrol_deleteselectedusers_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/deleteselectedusers_form.php',
+    'enrol_autoenrol_deleteselectedusers_operation' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/deleteselectedusers_operation.php',
+    'enrol_autoenrol_editselectedusers_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/editselectedusers_form.php',
+    'enrol_autoenrol_editselectedusers_operation' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/editselectedusers_operation.php',
+    'enrol_autoenrol_enrol_form' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/enrol_form.php',
+    'enrol_autoenrol_filter_frontend' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/filter_frontend.php',
+    'enrol_autoenrol_filter_info' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/classes/filter_info.php',
     'enrol_category\\observer' => '/Applications/MAMP/htdocs/moodle403/enrol/category/classes/observer.php',
     'enrol_category\\privacy\\provider' => '/Applications/MAMP/htdocs/moodle403/enrol/category/classes/privacy/provider.php',
     'enrol_category\\task\\enrol_category_sync' => '/Applications/MAMP/htdocs/moodle403/enrol/category/classes/task/enrol_category_sync.php',
@@ -6004,6 +6023,7 @@ $cache = array (
       ),
       'enrol' => 
       array (
+        'autoenrol' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/lib.php',
         'category' => '/Applications/MAMP/htdocs/moodle403/enrol/category/lib.php',
         'cohort' => '/Applications/MAMP/htdocs/moodle403/enrol/cohort/lib.php',
         'database' => '/Applications/MAMP/htdocs/moodle403/enrol/database/lib.php',
@@ -6362,6 +6382,7 @@ $cache = array (
       ),
       'enrol' => 
       array (
+        'autoenrol' => '/Applications/MAMP/htdocs/moodle403/enrol/autoenrol/settings.php',
         'category' => '/Applications/MAMP/htdocs/moodle403/enrol/category/settings.php',
         'cohort' => '/Applications/MAMP/htdocs/moodle403/enrol/cohort/settings.php',
         'database' => '/Applications/MAMP/htdocs/moodle403/enrol/database/settings.php',
